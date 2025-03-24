@@ -2,7 +2,7 @@ name: Deploy 04 practice project
 on:
   push:
     paths:
-      - '.github/workflows/04-practice-action-2.yml'
+      - '.github/workflows/04-practice-action-1.yml'
       - '04-practice-project/**'
 jobs:
   lint:
