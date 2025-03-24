@@ -2,7 +2,7 @@ name: Output event details on issues 04 practice project
 on:
   issues:
 jobs:
-  lint:
+  print-event-details:
     runs-on: ubuntu-latest
     steps:
       - name: Output event details
