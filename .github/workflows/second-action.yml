@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'second-action-react-demo/**'
+      - '.github/workflows/second-action.yml'
 jobs:
   test:
     runs-on: ubuntu-latest
