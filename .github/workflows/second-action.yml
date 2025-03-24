@@ -1,0 +1,21 @@
+name: Second Workflow - Test the react project
+on:
+  push:
+    paths:
+      - 'second-action-react-demo/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: |
+          cd second-action-react-demo
+          npm ci
+      - name: Run tests
+        run: npm test
