@@ -4,6 +4,7 @@ on:
     paths:
       - 'second-action-react-demo/**'
       - '.github/workflows/second-action.yml'
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
