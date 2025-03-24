@@ -1,0 +1,56 @@
+name: Deploy 04 practice project
+on:
+  push:
+    paths:
+      - '.github/workflows/04-practice-action-2.yml'
+      - '04-practice-project/**'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./04-practice-project
+        run: npm ci
+      - name: Run lint
+        working-directory: ./04-practice-project
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./04-practice-project
+        run: npm ci
+      - name: Run tests
+        working-directory: ./04-practice-project
+        run: npm test
+  deploy:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./04-practice-project
+        run: npm ci
+      - name: Build project
+        working-directory: ./04-practice-project
+        run: npm run build
+      - name: Deploy
+        working-directory: ./04-practice-project
+        run: echo "Deploying..."
