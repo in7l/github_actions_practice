@@ -1,4 +1,4 @@
-name: Second Workflow - Test the react project
+name: Second Workflow - Deploy a react project
 on:
   push:
     paths:
@@ -19,3 +19,20 @@ jobs:
       - name: Run tests
         working-directory: ./second-action-react-demo
         run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./second-action-react-demo
+        run: npm ci
+      - name: Build project
+        working-directory: ./second-action-react-demo
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying..."
