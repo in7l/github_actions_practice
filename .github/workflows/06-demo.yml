@@ -44,7 +44,6 @@ jobs:
         with:
           name: dist-files
       - name: Output the contents
-        working-directory: ./04-practice-project
         run: ls -al
       - name: Deploy
         run: echo "Deploying..."
