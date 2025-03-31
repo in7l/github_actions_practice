@@ -30,6 +30,13 @@ jobs:
       - name: Build website
         working-directory: ./04-practice-project
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: dist-files
+            path: |
+              ./04-practice-project/dist
+              ./04-practice-project/package.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
