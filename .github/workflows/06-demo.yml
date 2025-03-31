@@ -10,13 +10,13 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
-        working-directory: ./second-action-react-demo
+        working-directory: ./04-practice-project
         run: npm ci
       - name: Lint code
-        working-directory: ./second-action-react-demo
+        working-directory: ./04-practice-project
         run: npm run lint
       - name: Test code
-        working-directory: ./second-action-react-demo
+        working-directory: ./04-practice-project
         run: npm run test
   build:
     needs: test
@@ -25,10 +25,10 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
-        working-directory: ./second-action-react-demo
+        working-directory: ./04-practice-project
         run: npm ci
       - name: Build website
-        working-directory: ./second-action-react-demo
+        working-directory: ./04-practice-project
         run: npm run build
   deploy:
     needs: build
