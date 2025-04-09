@@ -16,10 +16,10 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
         run: npm ci
       - name: Lint code
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
         run: npm run lint
   test:
     runs-on: ubuntu-latest
@@ -34,15 +34,15 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
       - name: Test code
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
         run: npm run test
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: 06-project/test.json
+          path: second-action-react-demo/test.json
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -56,17 +56,17 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
         run: npm ci
       - name: Build website
         id: build-website
-        working-directory: ./06-project
+        working-directory: ./second-action-react-demo
         run: npm run build
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: 06-project/dist
+          path: second-action-react-demo/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
